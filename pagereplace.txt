@@ -1,0 +1,25 @@
+#fcfs
+page_reference_string = [7,0,1,2,0,3,0,4,2,3,0,3,1,2,0]
+
+frame = 3
+
+main_list = []
+
+pointer = 0
+
+for i in range(len(page_reference_string)):
+    element = page_reference_string[i]
+    if(len(main_list)!=frame):
+        main_list.append(element)
+        print(main_list)
+    else:
+        if(element in main_list):
+            print(main_list)
+        else:
+            main_list.pop(pointer)
+            main_list.insert(pointer,element)
+            print(main_list)
+            pointer = pointer + 1
+            if(pointer==frame):
+                pointer = 0
+        

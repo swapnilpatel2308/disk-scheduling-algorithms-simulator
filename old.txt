@@ -1,0 +1,236 @@
+# fcfs cpu schadulig algorithum
+
+p_name = ['p1','p2','p3','p4']
+
+a_time = [1,2,3,2]
+
+b_time = [6,3,4,8]
+
+p_q = []
+
+s_q = []
+
+flag = True
+
+c_b_t = 0
+
+for i in range(sum(b_time)):
+    if(i in a_time):
+        for j in range(len(a_time)):
+            if(i == a_time[j]):
+                p_q.append(p_name[j])
+    print(s_q," <==> ",p_q)
+    if(len(p_q)!=0 and flag == True):
+        flag =False
+        name = p_q[0]
+        c_b_t = b_time[p_name.index(p_q[0])]
+        p_q.remove(p_q[0])
+    if(c_b_t != 0):
+        s_q.append(name)
+        c_b_t = c_b_t - 1
+        if(c_b_t == 0):
+            flag = True
+
+
+
+# sjf cpu schadulig algorithum
+
+p_name = ['p1','p2','p3','p4','p5','p6']
+
+a_time = [1,3,8,7,2,6]
+
+b_time = [2,8,6,3,7,9]
+
+p_q = []
+
+s_q = []
+
+flag = True
+
+c_b_t = 0
+n_b = []
+for i in range(sum(b_time)):
+    if(i in a_time):
+        for j in range(len(a_time)):
+            if(i == a_time[j]):
+                p_q.append(p_name[j])
+    print(s_q," <==> ",p_q)
+    if(len(p_q)!=0 and flag == True and len(p_q)==1):
+        flag =False
+        name = p_q[0]
+        c_b_t = b_time[p_name.index(p_q[0])]
+        p_q.remove(p_q[0])
+
+    if(len(p_q)!=0 and flag == True and len(p_q)!=1):
+        flag =False
+        for k in range(len(p_q)):
+            n_b.append(b_time[p_name.index(p_q[k])])
+        name = p_name[b_time.index(min(n_b))]
+        c_b_t = min(n_b)
+        p_q.remove(name)
+        n_b = []
+
+    if(c_b_t != 0):
+        s_q.append(name)
+        c_b_t = c_b_t - 1
+        if(c_b_t == 0):
+            flag = True
+print(s_q," <==> ",p_q)
+
+
+# non p cpu schadulig algorithum
+
+p_name = ['a','b','c','d','e']
+
+a_time = [1,3,4,6,8]
+
+b_time = [3,5,2,7,4]
+
+prio_queue = [4,7,3,8,2]
+
+p_q = []
+
+s_q = []
+
+flag = True
+
+c_b_t = 0
+n_b = []
+for i in range(sum(b_time)+1):
+    if(i in a_time):
+        for j in range(len(a_time)):
+            if(i == a_time[j]):
+                p_q.append(p_name[j])
+    print(s_q," <==> ",p_q)
+    if(len(p_q)!=0 and flag == True and len(p_q)==1):
+        flag =False
+        name = p_q[0]
+        c_b_t = b_time[p_name.index(p_q[0])]
+        p_q.remove(p_q[0])
+
+    if(len(p_q)!=0 and flag == True and len(p_q)!=1):
+        flag =False
+        for k in range(len(p_q)):
+            n_b.append(prio_queue[p_name.index(p_q[k])])
+        name = p_name[prio_queue.index(min(n_b))]
+        c_b_t = b_time[prio_queue.index(min(n_b))]
+        p_q.remove(name)
+        n_b = []
+
+    if(c_b_t != 0):
+        s_q.append(name)
+        c_b_t = c_b_t - 1
+        if(c_b_t == 0):
+            flag = True
+print(s_q," <==> ",p_q)
+
+
+# srtf 
+
+p_name = ['a','b','c','d','e','f']
+cp = ['a','b','c','d','e','f']
+a_time = [2,1,3,5,7,2]
+
+b_time = [5,7,2,4,1,9]
+
+p_q = []
+
+s_q = []
+
+flag = True
+
+c_b_t = 0
+n_b = []
+for i in range(sum(b_time)):
+    if(i in a_time):
+        for j in range(len(cp)):
+            if(i == a_time[j]):
+                p_q.append(cp[j])
+    print(s_q," <==> ",p_q)
+
+    if(len(p_q)!=0):
+        for j in range(len(p_q)):
+            n_b.append(b_time[p_name.index(p_q[j])])
+        #print(n_b)
+        
+        name = p_name[b_time.index(min(n_b))]
+        s_q.append(name)
+        b_time[b_time.index(min(n_b))] = b_time[b_time.index(min(n_b))] - 1
+            
+        if(0 in b_time):
+            ind= b_time.index(0)
+            p_q.remove(p_name[ind])
+            p_name.remove(p_name[ind])
+            b_time.remove(0)
+        
+        n_b= []
+print(s_q," <==> ",p_q)
+
+
+primptive priority
+p_name = ['a','b','c','d','e','f']
+cp = ['a','b','c','d','e','f']
+a_time = [2,4,6,8,2,4]
+
+b_time = [1,4,5,2,5,7]
+
+prio_queue = [5,2,3,4,6,1]
+
+p_q = []
+
+s_q = []
+
+
+c_b_t = 0
+n_b = []
+
+for i in range(sum(b_time)):
+    if(i in a_time):
+        for j in range(len(cp)):
+            if(i == a_time[j]):
+                p_q.append(cp[j])
+    print(s_q," <==> ",p_q)
+
+    if(len(p_q)!=0):
+        for j in range(len(p_q)):
+            n_b.append(prio_queue[p_name.index(p_q[j])])
+        #print(n_b)
+        name = p_name[prio_queue.index(min(n_b))]
+        s_q.append(name)
+        b_time[prio_queue.index(min(n_b))] = b_time[prio_queue.index(min(n_b))] - 1
+            
+        if(0 in b_time):
+            ind= b_time.index(0)
+            p_q.remove(p_name[ind])
+            p_name.remove(p_name[ind])
+            prio_queue.remove(prio_queue[ind])
+            b_time.remove(0)
+    n_b = []
+        
+print(s_q," <==> ",p_q)
+
+
+# for i in range(sum(b_time)):
+#     if(i in a_time):
+#         for j in range(len(cp)):
+#             if(i == a_time[j]):
+#                 p_q.append(cp[j])
+#     print(s_q," <==> ",p_q)
+
+#     if(len(p_q)!=0):
+#         for j in range(len(p_q)):
+#             n_b.append(prio_queue[p_name.index(p_q[j])])
+#         #print(n_b)
+        
+#         name = p_name[prio_queue.index(min(n_b))]
+#         s_q.append(name)
+#         b_time[prio_queue.index(min(n_b))] = b_time[prio_queue.index(min(n_b))] - 1
+            
+#         if(0 in b_time):
+#             ind= b_time.index(0)
+#             p_q.remove(p_name[ind])
+#             p_name.remove(p_name[ind])
+#             b_time.remove(0)
+        
+#         n_b= []
+# print(s_q," <==> ",p_q)
