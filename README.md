@@ -2,7 +2,7 @@
 this project simulate the all disk scheduling algorithums
 
 
-# ypu just download all this file in your pc 
+# you just download all this file in your pc 
 and run main.py file so you get this type of interface
 ![image](https://user-images.githubusercontent.com/87056376/221342106-3850abe4-b739-44fa-9d87-1ef6caabc843.png)
 
